@@ -13,13 +13,11 @@ import { TouchSequence } from 'selenium-webdriver';
 })
 export class BoardComponent implements OnInit {
 
-  
-    
     counter=0;
     show:boolean=false
     squareLog:string[]=[]
     position:number;
-    square:number;
+  
     squares: string[]=[];
     pcMove:number[]=[0,1, 2, 3, 4, 5, 6, 7, 8];
     turn : string= 'X';
@@ -43,32 +41,26 @@ export class BoardComponent implements OnInit {
       onSelect(pos): void {
         this.show=true
         this.squareLog = Array(9).fill(null);
-
         for(let i=0;i<=pos;i++){
-
-            this.squareLog[this.logsat.logs[i].position]=this.logsat.logs[i].turn
+          this.squareLog[this.logsat.logs[i].position]=this.logsat.logs[i].turn
            
         }
-        
-    
-        
       }
    
+
+
+
+
 //ketu krijoj logs te ri
      krijoLog(){
-       
        this.logsat.addLogs(this.position,this.playerTurn,this.prevmove) 
-
-      
     }
 
 
     
 
    
-    
-
-    
+       
 //shtoj nje lojtare
     addPlayer(newPlayer: string) {
       if (newPlayer) {
@@ -84,24 +76,27 @@ export class BoardComponent implements OnInit {
         else{
           this.newGame()
         }
-        
-      }
-      
-      console.log(this.player)
+       }
     }
+
+
+
+
 //ketu bej hide element per 2 player
     div1Function(){
       this.div4=false;
       if(this.div1===false){
         this.div1=true;
-
       }
       else{
         this.div1=false;
-      }
-       
-        
+      }    
     }
+
+
+
+
+
 //ketu bej hide elemnt per 1 player
     div2Function(){
       this.div3=false
@@ -110,14 +105,18 @@ export class BoardComponent implements OnInit {
       }
       else{
         this.div2=false;
-      }
-     
+      } 
   }
+
 
     
     ngOnInit(){
       this.newGame()
     }
+
+
+
+
 //ketu loja rifillon  
     newGame() {
       this.squares = Array(9).fill(null);
@@ -138,28 +137,19 @@ export class BoardComponent implements OnInit {
     clickHandler(id:number){
       this.position=id;
      
-
       if(this.player.length===1){
         if(!this.gameover){
-          if(this.squares[id]===null)
-          
-          {
-            console.log('mbaroi')
-            
+          if(this.squares[id]===null){
             this.squares[id]=this.turn
-
-            
-             
-            
             this.changeturn();
-            this.krijoLog()
-            
+            this.krijoLog() 
             this.checkwinn();
+
+
             const index = this.pcMove.indexOf(id);
             if (index > -1) {
               this.pcMove.splice(index, 1);
             }
-            console.log(this.pcMove)
            
             const pc = Math.floor(Math.random() * this.pcMove.length);
             console.log(pc);
@@ -185,66 +175,47 @@ export class BoardComponent implements OnInit {
               
               console.log(this.pcMove)
             }
-           
-            
-            
           }
-          
         }
-        
-
       }
+
     else if(this.player.length===2){
       if(!this.gameover){
-        if(this.squares[id]===null)
-        
-        
-        {
-          
-          console.log('mbaroi')
+        if(this.squares[id]===null){
           this.squares[id]=this.turn
           this.changeturn();
           this.krijoLog()
-
-          
           this.checkwinn();
           this.shpallFitues()
           
         }
-        // else{
-          
-        // }
-        
-        
       }
 
     }
      
-  
-     
-    }
+}
 
 
     
-    
 
+//funksioni i cli ndryshon tipin e stringut gjithashtu dhe lojtarin
     changeturn(){
       
       if(this.player.length===1){
         if(this.turn==='X'){
-        
           this.playerTurn=this.player[0]
           this.prevmove=this.turn
           return this.turn='O';
         }
+
         else{
           this.playerTurn='PC'
           this.prevmove=this.turn
-
           this.turn='X'
         }
 
       }
+
       else if(this.player.length===2){
         if(this.turn==='X'){
         
@@ -252,6 +223,7 @@ export class BoardComponent implements OnInit {
           this.prevmove=this.turn
           return this.turn='O';
         }
+
         else{
           this.playerTurn=this.player[1]
           this.prevmove=this.turn
@@ -263,8 +235,7 @@ export class BoardComponent implements OnInit {
      
     }
 
-    
-
+//funksioni i cili permban algoritmin e fituesit
     checkwinn(){
       
       const lines = [
@@ -299,10 +270,12 @@ export class BoardComponent implements OnInit {
         this.winner='tie'
       }
     }
+  
 
+
+//ketu funksioni inicializon fituesin e lojes    
     shpallFitues(){
       if(this.winner!=='tie'){
-
         if(this.player.length===1){
           if(this.winner==='X'){
             this.fitues=this.player[0]
@@ -310,9 +283,7 @@ export class BoardComponent implements OnInit {
           else if(this.winner==='O'){
             this.fitues='Pc';
           }
-
         }
-
         else if(this.player.length===2){
           if(this.winner==='X'){
             this.fitues=this.player[0]
@@ -327,7 +298,5 @@ export class BoardComponent implements OnInit {
       }
       console.log(this.fitues);
     }
-   
   
-
 }
