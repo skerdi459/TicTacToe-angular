@@ -24,6 +24,7 @@
               "src/assets"
             ],
             "styles": [
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "src/styles.css"
             ],
             "scripts": []
@@ -119,6 +120,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "Tictoc"
+    }
+  },
+  "defaultProject": "Tictoc",
+  "cli": {
+    "analytics": "9822bfb5-23d0-42d3-b2f9-4a9c83c5fcfd"
+  }
 }
